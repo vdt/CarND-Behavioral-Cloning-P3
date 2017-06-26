@@ -1,0 +1,121 @@
+(carnd-term1) carnd@ip-172-31-20-28:~/BC-P3$ python model.py
+Using TensorFlow backend.
+I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcurand.so locally
+------------------------------
+Parameters
+------------------------------
+test_size            := 0.2
+nb_epoch             := 28
+save_best_only       := True
+samples_per_epoch    := 24000
+learning_rate        := 0.0001
+keep_prob            := 0.5
+batch_size           := 1024
+data_dir             := data
+------------------------------
+____________________________________________________________________________________________________
+Layer (type)                     Output Shape          Param #     Connected to
+====================================================================================================
+lambda_1 (Lambda)                (None, 66, 200, 3)    0           lambda_input_1[0][0]
+____________________________________________________________________________________________________
+convolution2d_1 (Convolution2D)  (None, 31, 98, 24)    1824        lambda_1[0][0]
+____________________________________________________________________________________________________
+convolution2d_2 (Convolution2D)  (None, 14, 47, 36)    21636       convolution2d_1[0][0]
+____________________________________________________________________________________________________
+convolution2d_3 (Convolution2D)  (None, 5, 22, 48)     43248       convolution2d_2[0][0]
+____________________________________________________________________________________________________\
+convolution2d_4 (Convolution2D)  (None, 3, 20, 64)     27712       convolution2d_3[0][0]\
+____________________________________________________________________________________________________\
+convolution2d_5 (Convolution2D)  (None, 1, 18, 64)     36928       convolution2d_4[0][0]\
+____________________________________________________________________________________________________\
+dropout_1 (Dropout)              (None, 1, 18, 64)     0           convolution2d_5[0][0]\
+____________________________________________________________________________________________________\
+flatten_1 (Flatten)              (None, 1152)          0           dropout_1[0][0]\
+____________________________________________________________________________________________________\
+dense_1 (Dense)                  (None, 100)           115300      flatten_1[0][0]\
+____________________________________________________________________________________________________\
+dense_2 (Dense)                  (None, 50)            5050        dense_1[0][0]\
+____________________________________________________________________________________________________\
+dense_3 (Dense)                  (None, 10)            510         dense_2[0][0]\
+____________________________________________________________________________________________________\
+dense_4 (Dense)                  (None, 1)             11          dense_3[0][0]\
+====================================================================================================\
+Total params: 252,219\
+Trainable params: 252,219\
+Non-trainable params: 0\
+____________________________________________________________________________________________________\
+Epoch 1/28\
+/home/carnd/BC-P3/utils.py:100: VisibleDeprecationWarning: boolean index did not match indexed array along dimension 0; dimension is 160 but corresponding boolean dimension is 66\
+  mask[(ym - y1) * (x2 - x1) - (y2 - y1) * (xm - x1) > 0] = 1\
+I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero\
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] Found device 0 with properties:\
+name: GRID K520\
+major: 3 minor: 0 memoryClockRate (GHz) 0.797\
+pciBusID 0000:00:03.0\
+Total memory: 3.94GiB\
+Free memory: 3.91GiB\
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:906] DMA: 0\
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 0:   Y\
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GRID K520, pci bus id: 0000:00:03.0)\
+23552/24000 [============================>.] - ETA: 2s - loss: 0.0631/home/carnd/anaconda3/envs/carnd-term1/lib/python3.5/site-packages/keras/engine/training.py:1569: UserWarning: Epoch comprised more than `samples_per_epoch` samples, which might affect learning results. Set `samples_per_epoch` correctly to avoid this warning.\
+  warnings.warn('Epoch comprised more than '\
+24576/24000 [==============================] - 125s - loss: 0.0624 - val_loss: 0.0179\
+Epoch 2/28\
+24576/24000 [==============================] - 109s - loss: 0.0392 - val_loss: 0.0148\
+Epoch 3/28\
+24576/24000 [==============================] - 110s - loss: 0.0338 - val_loss: 0.0130\
+Epoch 4/28\
+24576/24000 [==============================] - 109s - loss: 0.0316 - val_loss: 0.0128\
+Epoch 5/28\
+24576/24000 [==============================] - 107s - loss: 0.0300 - val_loss: 0.0127\
+Epoch 6/28\
+24576/24000 [==============================] - 106s - loss: 0.0292 - val_loss: 0.0114\
+Epoch 7/28\
+24576/24000 [==============================] - 107s - loss: 0.0279 - val_loss: 0.0111\
+Epoch 8/28\
+24576/24000 [==============================] - 106s - loss: 0.0271 - val_loss: 0.0124\
+Epoch 9/28\
+24576/24000 [==============================] - 107s - loss: 0.0268 - val_loss: 0.0116\
+Epoch 10/28\
+24576/24000 [==============================] - 106s - loss: 0.0258 - val_loss: 0.0114\
+Epoch 11/28\
+24576/24000 [==============================] - 106s - loss: 0.0251 - val_loss: 0.0114\
+Epoch 12/28\
+24576/24000 [==============================] - 107s - loss: 0.0254 - val_loss: 0.0109\
+Epoch 13/28\
+24576/24000 [==============================] - 107s - loss: 0.0248 - val_loss: 0.0112\
+Epoch 14/28\
+24576/24000 [==============================] - 107s - loss: 0.0244 - val_loss: 0.0107\
+Epoch 15/28\
+24576/24000 [==============================] - 109s - loss: 0.0238 - val_loss: 0.0108\
+Epoch 16/28\
+24576/24000 [==============================] - 106s - loss: 0.0238 - val_loss: 0.0104\
+Epoch 17/28\
+24576/24000 [==============================] - 105s - loss: 0.0233 - val_loss: 0.0111\
+Epoch 18/28\
+24576/24000 [==============================] - 105s - loss: 0.0234 - val_loss: 0.0105\
+Epoch 19/28\
+24576/24000 [==============================] - 105s - loss: 0.0227 - val_loss: 0.0098\
+Epoch 20/28\
+24576/24000 [==============================] - 105s - loss: 0.0227 - val_loss: 0.0114\
+Epoch 21/28\
+24576/24000 [==============================] - 105s - loss: 0.0231 - val_loss: 0.0107\
+Epoch 22/28\
+24576/24000 [==============================] - 105s - loss: 0.0221 - val_loss: 0.0108\
+Epoch 23/28\
+24576/24000 [==============================] - 105s - loss: 0.0223 - val_loss: 0.0110\
+Epoch 24/28\
+24576/24000 [==============================] - 106s - loss: 0.0224 - val_loss: 0.0108\
+Epoch 25/28\
+24576/24000 [==============================] - 105s - loss: 0.0220 - val_loss: 0.0097\
+Epoch 26/28\
+24576/24000 [==============================] - 106s - loss: 0.0215 - val_loss: 0.0100\
+Epoch 27/28\
+24576/24000 [==============================] - 106s - loss: 0.0217 - val_loss: 0.0098\
+Epoch 28/28\
+24576/24000 [==============================] - 107s - loss: 0.0216 - val_loss: 0.0110\
+(carnd-term1) carnd@ip-172-31-20-28:~/BC-P3$ ls
